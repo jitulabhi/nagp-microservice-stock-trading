@@ -77,6 +77,8 @@ public class StockTradingService {
 	}
 
 	public void sell(StockTradingRequest request) {
+		String tradeId = UUID.randomUUID().toString(); 
+		
 		StockTrading obj = new StockTrading();
 		obj.setSellPrice(request.getPrice());
 		obj.setSellQuantity(request.getQuantity());
@@ -84,6 +86,8 @@ public class StockTradingService {
 		obj.setStockId(request.getStockId());
 		obj.setStockName(request.getStockName());
 		repo.save(obj);
+		gateway.send(new StockSellCommand(tradeId, request.getCustomerId(),
+				request.getStockId(), request.getStockName(), request.getQuantity(), request.getPrice()));
 
 	}
 	
