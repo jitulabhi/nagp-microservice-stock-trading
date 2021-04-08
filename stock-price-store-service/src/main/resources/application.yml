@@ -1,0 +1,28 @@
+server:
+ port: 9083
+
+
+instance:
+ hostname: localhost
+
+spring:
+ application:
+  name: stock-price-store-service
+
+camel:
+ component:
+  kafka:
+   configuration:
+    brokers: localhost:9092
+    value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    topic: stock-price
+  mongodb3:
+   uri: mongodb://test:test@localhost:27017/?authSource=admin
+   database: stock-trading-user
+   operation: insert
+   collection: stock-price-history  
+
+
+
+

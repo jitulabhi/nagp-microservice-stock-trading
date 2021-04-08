@@ -1,0 +1,23 @@
+version: '3'
+services:
+  
+  gateway:
+        build:
+            context: gateway
+            dockerfile: Dockerfile
+        ports:
+            - 8080:8080
+        labels:
+            collect_logs_with_filebeat: "true"
+            decode_log_event_to_json_object: "true"
+        
+        #depends_on:
+        #    - mongo-db
+        restart: on-failure
+        #command: ["wait-for-it.sh", "mongo-db:27017"]
+        
+networks: 
+  default: 
+    #external: 
+      name: nagp-microservice
+  

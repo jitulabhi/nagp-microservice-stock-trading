@@ -1,0 +1,35 @@
+version: '3'
+services:
+  
+  auth-service:
+        build:
+            context: auth-service
+            dockerfile: Dockerfile
+        ports:
+            - 8082:8082
+        labels:
+            collect_logs_with_filebeat: "true"
+            decode_log_event_to_json_object: "true"
+        #depends_on:
+        #    - gateway
+        restart: on-failure
+        #command: ["wait-for-it.sh", "gateway:8080"]
+        #command: ["wait-for-it.sh", "mongo-db:27017"]
+  user-account:
+        build:
+            context: user-account
+            dockerfile: Dockerfile
+        ports:
+            - 8081:8081
+        labels:
+            collect_logs_with_filebeat: "true"
+            decode_log_event_to_json_object: "true"
+        #depends_on:
+        #    - gateway
+        restart: on-failure
+        #command: ["wait-for-it.sh", "gateway:8080"]
+        #command: ["wait-for-it.sh", "mongo-db:27017"]
+networks: 
+  default: 
+    #external: 
+      name: nagp-microservice
