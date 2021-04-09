@@ -1,7 +1,5 @@
 version: '3'
-services:
-  
-      
+services:      
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
     ports:
@@ -45,6 +43,5 @@ services:
       
 networks: 
   default: 
-    #external: 
       name: nagp-microservice
   
