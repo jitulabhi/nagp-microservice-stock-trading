@@ -27,7 +27,7 @@ job:
 
  
 server:
- port: 9083
+ port: 9084
 
 
 instance:

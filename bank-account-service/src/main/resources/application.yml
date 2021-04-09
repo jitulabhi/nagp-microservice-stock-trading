@@ -11,7 +11,7 @@ spring:
    
 
 server:
- port: 9081
+ port: 9083
 
 eureka:
  client:
